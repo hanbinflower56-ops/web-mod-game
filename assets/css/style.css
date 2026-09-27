@@ -283,6 +283,7 @@ img { max-width: 100%; display: block; }
   font-weight: 900;
   color: rgba(255, 255, 255, 0.92);
   background: linear-gradient(135deg, #1f2a38, #101722);
+  overflow: hidden;
 }
 .game-thumb .badge {
   position: absolute;
