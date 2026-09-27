@@ -54,8 +54,8 @@
     var form = $('[data-search-form]');
     var input = $('[data-search-input]');
     var cards = $$('[data-game-card]');
+    var sections = $$('[data-game-section]');
     var emptyState = $('[data-empty-state]');
-    var counter = $('[data-game-count]');
 
     var params = new URLSearchParams(window.location.search);
     var initialQuery = params.get('q') || '';
@@ -73,8 +73,21 @@
         if (match) visible++;
       });
 
+      // Each section counts and hides itself, so a search that only matches
+      // one category never leaves an empty heading behind.
+      sections.forEach(function (section) {
+        var shown = $$('[data-game-card]', section).filter(function (card) {
+          return !card.classList.contains('hidden');
+        });
+        var counter = $('[data-game-count]', section);
+        if (counter) {
+          var noun = counter.getAttribute('data-noun') || 'game';
+          counter.textContent = shown.length + ' ' + noun + (shown.length === 1 ? '' : 's');
+        }
+        section.classList.toggle('hidden', shown.length === 0);
+      });
+
       if (emptyState) emptyState.classList.toggle('hidden', visible !== 0);
-      if (counter) counter.textContent = visible + (visible === 1 ? ' game' : ' games');
       return visible;
     }
 
