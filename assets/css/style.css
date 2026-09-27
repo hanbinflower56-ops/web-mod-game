@@ -474,6 +474,17 @@ img { max-width: 100%; display: block; }
   color: var(--text-muted);
   font-size: 13px;
   text-align: center;
+  overflow: hidden;
+}
+
+/* Phone screenshots are taller than the 9/16 tile, so let the image fill the
+   tile and crop the bottom instead of overflowing into the next block. */
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: inherit;
 }
 
 .notice {
