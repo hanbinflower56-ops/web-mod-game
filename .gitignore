@@ -1,0 +1,12 @@
+# AI/Editor tool folders
+.kilo/
+.kombai/
+.claude/
+
+# Downloaded/temp files
+*.apk
+sw.js
+
+# OS files
+.DS_Store
+Thumbs.db
